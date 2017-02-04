@@ -27,8 +27,8 @@ app.post('/ghpush', function (req, res) {
             body: bodyMsg
         };
         api.sendMessage(msg, yourID);
-        res.send("on push: " + JSON.stringify(req.body));
-
+        // res.send("on push: " + JSON.stringify(req.body));
+        res.sendStatus(200);
     });
 });
 
