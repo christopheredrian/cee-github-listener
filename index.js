@@ -23,7 +23,7 @@ app.post('/ghpush', function (req, res) {
         // var yourID = 100000080590639;
         var yourID = 1323709537696090
         var msg = {
-            body: req.body
+            body: JSON.stringify(req.body);
         };
         api.sendMessage(msg, yourID);
         res.send("on push: " + JSON.stringify(req.body));
