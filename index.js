@@ -3,6 +3,7 @@ var fs = require('fs');
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
+app.set('port', (process.env.PORT || 80));
 
 var cred = JSON.parse(fs.readFileSync('./scrt.json', "utf-8"));
 
@@ -41,7 +42,6 @@ app.get('/ghpush', function (req, res) {
 app.listen(app.get('port'), function () {
     console.log('Node app is running on port', app.get('port'));
 });
-app.set('port', (process.env.PORT || 80));
 
 // wh server below
 // var http = require('http')
