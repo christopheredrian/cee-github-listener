@@ -45,7 +45,7 @@
 var http = require('http')
 var createHandler = require('github-webhook-handler')
 var handler = createHandler({
-    path: 'https://cee-github-listener.herokuapp.com/ghpush', secret: 'noitaxaler'
+    path: 'https://cee-github-listener.herokuapp.com', secret: 'noitaxaler'
 })
 
 http.createServer(function (req, res) {
