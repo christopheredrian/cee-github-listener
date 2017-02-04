@@ -2,6 +2,9 @@
   "name": "cee-github-listener",
   "version": "0.0.1",
   "description": "My github listener to facebook message",
+  "engines": {
+    "node": "5.9.1"
+  },
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
