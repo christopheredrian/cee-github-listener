@@ -15,10 +15,6 @@ app.use(bodyParser.urlencoded({
 app.post('/ghpush', function (req, res) {
     //   res.send('POST request to the homepage')
     console.log(JSON.stringify(req.body));
-    res.send("body: " + JSON.stringify(req.body));
-});
-
-app.get('/ghpush', function (req, res) {
     login({
         email: "cee.bot.7",
         password: cred.key
@@ -30,9 +26,14 @@ app.get('/ghpush', function (req, res) {
             body: req.body
         };
         api.sendMessage(msg, yourID);
-        res.send("bd: " + JSON.stringify(req.body));
+        res.send("on push: " + JSON.stringify(req.body));
 
     });
+});
+
+app.get('/ghpush', function (req, res) {
+    res.send("body: " + JSON.stringify(req.body));
+
 });
 
 
