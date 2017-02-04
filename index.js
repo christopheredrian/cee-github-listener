@@ -1,20 +1,69 @@
-var login = require("facebook-chat-api");
-var fs = require('fs');
-const express = require('express');
-const bodyParser = require('body-parser');
-const app = express();
-app.set('port', (process.env.PORT || 80));
-var cred = JSON.parse(fs.readFileSync('./scrt.json', "utf-8"));
+// var login = require("facebook-chat-api");
+// var fs = require('fs');
+// const express = require('express');
+// const bodyParser = require('body-parser');
+// const app = express();
 
-app.use(express.static('public'));
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
+// var cred = JSON.parse(fs.readFileSync('./scrt.json', "utf-8"));
 
-// POST method route
-app.post('/ghpush', function (req, res) {
-    //   res.send('POST request to the homepage')
-    console.log(JSON.stringify(req.body));
+// app.use(express.static('public'));
+// app.use(bodyParser.urlencoded({
+//     extended: true
+// }));
+
+// // POST method route
+// app.post('/ghpush', function (req, res) {
+//     //   res.send('POST request to the homepage')
+//     console.log(JSON.stringify(req.body));
+//     login({
+//         email: "cee.bot.7",
+//         password: cred.key
+//     }, function callback(err, api) {
+//         if (err) return console.error(err);
+//         // var yourID = 100000080590639;
+//         var yourID = 1323709537696090
+//         var bodyMsg = "Response of git: " + JSON.stringify(req.body) + "Compare: " + req.body.compare;
+//         var msg = {
+//             body: bodyMsg
+//         };
+//         api.sendMessage(msg, yourID);
+//         // res.send("on push: " + JSON.stringify(req.body));
+//         res.sendStatus(200);
+//     });
+// });
+
+// app.get('/ghpush', function (req, res) {
+//     res.send("body: " + JSON.stringify(req.body));
+
+// });
+
+
+// app.listen(app.get('port'), function () {
+//     console.log('Node app is running on port', app.get('port'));
+// });
+// app.set('port', (process.env.PORT || 80));
+var http = require('http')
+var createHandler = require('github-webhook-handler')
+var handler = createHandler({
+    path: '/webhook',
+    secret: 'myhashsecret'
+})
+
+http.createServer(function (req, res) {
+    handler(req, res, function (err) {
+        res.statusCode = 404
+        res.end('no such location')
+    })
+}).listen(process.env.PORT || 80)
+
+handler.on('error', function (err) {
+    console.error('Error:', err.message)
+})
+
+handler.on('push', function (event) {
+    console.log('Received a push event for %s to %s',
+        event.payload.repository.name,
+        event.payload.ref)
     login({
         email: "cee.bot.7",
         password: cred.key
@@ -22,8 +71,7 @@ app.post('/ghpush', function (req, res) {
         if (err) return console.error(err);
         // var yourID = 100000080590639;
         var yourID = 1323709537696090
-        // var bodyMsg = "Response of git: " + JSON.stringify(req.body) + "Compare: " + req.body.compare;
-        var bodyMsg = "this is the body";
+        var bodyMsg = "Response of git: " + event.payload.repository.name;
         var msg = {
             body: bodyMsg
         };
@@ -31,14 +79,12 @@ app.post('/ghpush', function (req, res) {
         // res.send("on push: " + JSON.stringify(req.body));
         res.sendStatus(200);
     });
-});
+})
 
-app.get('/ghpush', function (req, res) {
-    res.send("body: " + JSON.stringify(req.body));
-
-});
-
-
-app.listen(app.get('port'), function () {
-    console.log('Node app is running on port', app.get('port'));
-});
+handler.on('issues', function (event) {
+    console.log('Received an issue event for %s action=%s: #%d %s',
+        event.payload.repository.name,
+        event.payload.action,
+        event.payload.issue.number,
+        event.payload.issue.title)
+})
