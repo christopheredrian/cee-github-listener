@@ -24,8 +24,8 @@ app.post('/ghpush', function (req, res) {
         bodyMsg = bodyMsg + "\nRaw: " + req.body;
         var obj = JSON.parse(JSON.stringify(req.body));
         bodyMsg = bodyMsg + "\nParsed and Stringified: " + Object.keys(obj).toString();
-        bodyMsg = bodyMsg + "\nreq.body: "  + Object.keys(req.body).toString();
-        bodyMsg = bodyMsg + "\npayload.repository.name: " + req.body.payload.repository.name;
+        bodyMsg = bodyMsg + "\nreq.body: " + Object.keys(req.body).toString();
+        bodyMsg = bodyMsg + "\nString - payload: " + JSON.stringify(req.body.payload);
         var msg = {
             body: bodyMsg
         };
