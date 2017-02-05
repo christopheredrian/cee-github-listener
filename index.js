@@ -6,7 +6,6 @@ const app = express();
 app.set('port', (process.env.PORT || 80));
 
 var cred = JSON.parse(fs.readFileSync('./scrt.json', "utf-8"));
-
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({
     extended: true
@@ -15,8 +14,7 @@ app.use(bodyParser.urlencoded({
 // POST method route
 app.post('/ghpush', function (req, res) {
     //   res.send('POST request to the homepage')
-    var json = JSON.parse(req.body);
-    console.log(json);
+    var json = req.body;
     login({
         email: "cee.bot.7",
         password: cred.key
@@ -24,7 +22,7 @@ app.post('/ghpush', function (req, res) {
         if (err) return console.error(err);
         var yourID = 1323709537696090
         var bodyMsg = "";
-        if(repository.name){
+        if(json.repository.name){
             bodyMsg += "\nRepo name: " + json.repository.name;
         } else{
             bodyMsg += "No repository name";
@@ -33,7 +31,6 @@ app.post('/ghpush', function (req, res) {
             body: bodyMsg
         };
         api.sendMessage(msg, yourID);
-        // res.send("on push: " + JSON.stringify(req.body));
         res.sendStatus(200);
     });
 });
