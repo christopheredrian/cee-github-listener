@@ -24,6 +24,9 @@ app.post('/ghpush', function (req, res) {
         // var yourID = 100000080590639;
         var yourID = 1323709537696090
         var bodyMsg = JSON.stringify(req.body);
+        if(req.body.hook_id){
+            bodyMsg += "\nhook_id: " + req.body.hook_id;
+        }
         // var bodyMsg = "Response of git: " + "hookid: " +
         //     req.body.hook_id + "Reponame: " + req.body.repository.name;
         var msg = {
