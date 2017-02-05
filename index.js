@@ -15,20 +15,20 @@ app.use(bodyParser.urlencoded({
 // POST method route
 app.post('/ghpush', function (req, res) {
     //   res.send('POST request to the homepage')
-    console .log(JSON.stringify(req.body));
+    var json = JSON.parse(req.body);
+    console.log(json);
     login({
         email: "cee.bot.7",
         password: cred.key
     }, function callback(err, api) {
         if (err) return console.error(err);
-        // var yourID = 100000080590639 ;
         var yourID = 1323709537696090
-        var bodyMsg = JSON.stringify(req.body);
-        if(req.body.hook_id){
-            bodyMsg += "\nhook_id: " + req.body.hook_id;
+        var bodyMsg = "";
+        if(repository.name){
+            bodyMsg += "\nRepo name: " + json.repository.name;
+        } else{
+            bodyMsg += "No repository name";
         }
-        // var bodyMsg = "Response of git: " + "hookid: " +
-        //     req.body.hook_id + "Reponame: " + req.body.repository.name;
         var msg = {
             body: bodyMsg
         };
