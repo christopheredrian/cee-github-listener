@@ -19,7 +19,8 @@ app.post('/ghpush', function (req, res) {
     }, function callback(err, api) {
         if (err) return console.error(err);
         var yourID = 1323709537696090
-        var bodyMsg = req.body;
+        var bodyMsg = "Stringified: " + JSON.stringify(req.body);
+        bodyMsg = bodyMsg + "\nRaw: " + req.body;
         var msg = {
             body: bodyMsg
         };
