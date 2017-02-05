@@ -19,10 +19,11 @@ app.post('/ghpush', function (req, res) {
     }, function callback(err, api) {
         if (err) return console.error(err);
         var yourID = 1323709537696090
-        var bodyMsg = "Stringified: " + JSON.stringify(req.body);
+        // var bodyMsg = "Stringified: " + JSON.stringify(req.body);
         bodyMsg = bodyMsg + "\nRaw: " + req.body;
         var obj = JSON.parse(JSON.stringify(req.body));
-        bodyMsg = bodyMsg + "\nRepository: " + obj.repository.name;
+        bodyMsg = bodyMsg + "\nParsed and Stringified: " + Object.keys(obj).toString();
+        bodyMsg = bodyMsg + "\nreq.body: "  + Object.keys(req.body).toString();
         var msg = {
             body: bodyMsg
         };
