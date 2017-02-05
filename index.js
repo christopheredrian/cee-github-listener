@@ -23,13 +23,13 @@ app.post('/ghpush', function (req, res) {
         var yourID = 1323709537696090
         // var bodyMsg = "Stringified: " + JSON.stringify(req.body);
         // bodyMsg = bodyMsg + "\nRaw: " + req.body;
-        var obj = JSON.parse(req.body);
+        // var obj = JSON.parse(req.body);
         // bodyMsg = bodyMsg + "\nParsed and Stringified: " + Object.keys(obj).toString();
         // bodyMsg = bodyMsg + "\nreq.body: " + Object.keys(req.body).toString();
         // bodyMsg = bodyMsg + "\nString - payload: " + JSON.stringify(req.body.payload);
-        bodyMsg = bodyMsg + "\nRepo name: " + obj.repository.name;
-        bodyMsg = bodyMsg + "\nSender: " + obj.sender.login;
-        bodyMsg = bodyMsg + "\nURL: : " + obj.deployment_status.url;
+        bodyMsg = bodyMsg + "\nRepo name: " + req.body.repository.name;
+        bodyMsg = bodyMsg + "\nSender: " + req.body.sender.login;
+        bodyMsg = bodyMsg + "\nURL: : " + req.body.deployment_status.url;
         var msg = {
             body: bodyMsg
         };
