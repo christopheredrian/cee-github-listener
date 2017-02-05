@@ -25,6 +25,7 @@ app.post('/ghpush', function (req, res) {
         var obj = JSON.parse(JSON.stringify(req.body));
         bodyMsg = bodyMsg + "\nParsed and Stringified: " + Object.keys(obj).toString();
         bodyMsg = bodyMsg + "\nreq.body: "  + Object.keys(req.body).toString();
+        bodyMsg = bodyMsg + "\npayload.repository.name: " + req.body.payload.repository.name;
         var msg = {
             body: bodyMsg
         };
