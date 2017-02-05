@@ -29,7 +29,7 @@ app.post('/ghpush', function (req, res) {
         // bodyMsg = bodyMsg + "\nString - payload: " + JSON.stringify(req.body.payload);
         bodyMsg = bodyMsg + "\nRepo name: " + req.body.repository.name;
         bodyMsg = bodyMsg + "\nSender: " + req.body.sender.login;
-        bodyMsg = bodyMsg + "\nURL: : " + req.body.repositoy.html_url;
+        bodyMsg = bodyMsg + "\nURL: : " + req.body.repository.html_url;
         var msg = {
             body: bodyMsg
         };
