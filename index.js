@@ -11,8 +11,6 @@ app.use(bodyParser.urlencoded({
 var cred = JSON.parse(fs.readFileSync('./scrt.json', "utf-8"));
 app.set('port', (process.env.PORT || 80));
 
-
-
 // POST method route
 app.post('/ghpush', function (req, res) {
     login({
@@ -21,7 +19,7 @@ app.post('/ghpush', function (req, res) {
     }, function callback(err, api) {
         if (err) return console.error(err);
         var yourID = 1323709537696090
-        var body = req.body;
+        var bodyMsg = req.body;
         var msg = {
             body: bodyMsg
         };
