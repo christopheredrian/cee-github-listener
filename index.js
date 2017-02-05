@@ -8,6 +8,7 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({
     extended: true
 }));
+app.use(bodyParser.json());
 var cred = JSON.parse(fs.readFileSync('./scrt.json', "utf-8"));
 app.set('port', (process.env.PORT || 80));
 
