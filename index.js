@@ -18,6 +18,7 @@ app.post('/ghpush', function (req, res) {
         password: cred.key
     }, function callback(err, api) {
         if (err) return console.error(err);
+        var bodyMsg = "";
         var yourID = 1323709537696090
         // var bodyMsg = "Stringified: " + JSON.stringify(req.body);
         bodyMsg = bodyMsg + "\nRaw: " + req.body;
