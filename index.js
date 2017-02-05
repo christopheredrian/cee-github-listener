@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({
 // POST method route
 app.post('/ghpush', function (req, res) {
     //   res.send('POST request to the homepage')
-    // console .log(JSON.stringify(req.body));
+    console .log(JSON.stringify(req.body));
     login({
         email: "cee.bot.7",
         password: cred.key
