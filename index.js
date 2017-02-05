@@ -21,7 +21,8 @@ app.post('/ghpush', function (req, res) {
         var yourID = 1323709537696090
         var bodyMsg = "Stringified: " + JSON.stringify(req.body);
         bodyMsg = bodyMsg + "\nRaw: " + req.body;
-        bodyMsg = bodyMsg + "\nRepository: " + JSON.stringify(req.body.repository);
+        var obj = JSON.parse(JSON.stringify(req.body));
+        bodyMsg = bodyMsg + "\nRepository: " + obj.repository.name;
         var msg = {
             body: bodyMsg
         };
