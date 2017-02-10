@@ -20,16 +20,10 @@ app.post('/ghpush', function (req, res) {
     }, function callback(err, api) {
         if (err) return console.error(err);
         var bodyMsg = "Hey! There was a push on our repo!";
-        var yourID = 1323709537696090
-        // var bodyMsg = "Stringified: " + JSON.stringify(req.body);
-        // bodyMsg = bodyMsg + "\nRaw: " + req.body;
-        // var obj = JSON.parse(req.body);
-        // bodyMsg = bodyMsg + "\nParsed and Stringified: " + Object.keys(obj).toString();
-        // bodyMsg = bodyMsg + "\nreq.body: " + Object.keys(req.body).toString();
-        // bodyMsg = bodyMsg + "\nString - payload: " + JSON.stringify(req.body.payload);
+        var yourID = 912570548846730;
         bodyMsg = bodyMsg + "\nRepo name: " + req.body.repository.name;
         bodyMsg = bodyMsg + "\nSender: " + req.body.sender.login;
-        bodyMsg = bodyMsg + "\nURL: : " + req.body.repository.html_url;
+        bodyMsg = bodyMsg + "\nCheck it out here: : " + req.body.repository.html_url;
         var msg = {
             body: bodyMsg
         };
