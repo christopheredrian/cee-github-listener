@@ -20,7 +20,8 @@ app.post('/ghpush', function (req, res) {
     }, function callback(err, api) {
         if (err) return console.error(err);
         var bodyMsg = "Hey! There was a push on our repo!";
-        var yourID = 912570548846730;
+        // var yourID = 912570548846730; // id prelims webtech
+        var yourID = 1164122710377891;
         bodyMsg = bodyMsg + "\nRepo name: " + req.body.repository.name;
         bodyMsg = bodyMsg + "\nSender: " + req.body.sender.login;
         bodyMsg = bodyMsg + "\nCheck it out here: : " + req.body.repository.html_url;
